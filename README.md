@@ -29,6 +29,8 @@ parent
 Usage
 -----
 
+Use ``try.sh`` or you can manually do
+
 1. Run ``cd libfoo; make``
 2. Run ``cd libbar; make``
 3. Run ``cd pylib1; ./makewheel.sh``
