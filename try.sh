@@ -1,4 +1,5 @@
 #!/bin/bash
+find ./ -iname "*.so" -delete
 source venv/bin/activate
 pip install cython wheel auditwheel
 (cd libfoo; make)
