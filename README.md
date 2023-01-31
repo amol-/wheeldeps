@@ -35,7 +35,7 @@ Use ``try.sh`` or you can manually do
 2. Run ``cd libbar; make``
 3. Run ``cd pylib1; ./makewheel.sh``
 4. Run ``cd pylib2; ./makewheel.sh``
-5. Create a virtual environment and activate it (``python -mvenv venv; source ./venv/bin/activate``)
-6. Run ``pip install pylib1/wheelhouse/*.whl``
-7. Run ``pip install pylib2/wheelhouse/*.whl``
+5. Run ``python consolidatewheels.py pylib1/wheelhouse/*.whl pylib2/wheelhouse/*.whl``
+6. Create a virtual environment and activate it (``python -mvenv venv; source ./venv/bin/activate``)
+7. Run ``pip install *.whl --force-reinstall``
 8. Run ``cd pyparent; python test.py``
