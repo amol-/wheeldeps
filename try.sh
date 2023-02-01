@@ -1,11 +1,11 @@
 #!/bin/bash
 find ./ -iname "*.so" -delete
 source venv/bin/activate
-pip install cython wheel auditwheel
+pip install cython wheel auditwheel consolidatewheels
 (cd libfoo; make)
 (cd libbar; make)
 (cd pylib1; ./makewheel.sh)
 (cd pylib2; ./makewheel.sh)
-python consolidatewheels.py pylib1/wheelhouse/*.whl pylib2/wheelhouse/*.whl
-pip install *.whl --force-reinstall
+consolidatewheels pylib1/wheelhouse/*.whl pylib2/wheelhouse/*.whl --dest=./patchedwheels
+pip install patchedwheels/*.whl --force-reinstall
 python pyparent/test.py
