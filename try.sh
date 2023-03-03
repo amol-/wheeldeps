@@ -1,7 +1,7 @@
 #!/bin/bash
 find ./ -iname "*.so" -delete
 source venv/bin/activate
-pip install cython wheel auditwheel consolidatewheels
+pip install cython wheel auditwheel consolidatewheels delocate
 (cd libfoo; make)
 (cd libbar; make)
 (cd pylib1; ./makewheel.sh)
