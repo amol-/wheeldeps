@@ -2,7 +2,12 @@
 rm -rf build dist wheelhouse
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     python3 setup.py bdist_wheel
-    LD_LIBRARY_PATH="$PWD/../libbar" auditwheel repair dist/libtwo*.whl --exclude libfoo.so
+    if [[ "$LINUX_NO_EXCLUDE" == "1" ]]; then
+        # for testing only...
+        LD_LIBRARY_PATH="$PWD/../libbar:$PWD/../libfoo" auditwheel repair dist/libtwo*.whl
+    else
+        LD_LIBRARY_PATH="$PWD/../libbar" auditwheel repair dist/libtwo*.whl --exclude libfoo.so
+    fi
 elif [[ "$OSTYPE" == "darwin"* ]]; then
     py_platform=$(python -c "import sysconfig; print('%s' % sysconfig.get_platform());")
     export MACOSX_DEPLOYMENT_TARGET="11.0"
