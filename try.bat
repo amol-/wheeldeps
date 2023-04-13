@@ -1,3 +1,4 @@
+Setlocal EnableDelayedExpansion
 call venv\Scripts\activate.bat
 call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\Tools\VsDevCmd.bat" -arch=amd64 -host_arch=amd64
 pip install cython wheel delvewheel consolidatewheels
@@ -13,6 +14,11 @@ cd ..
 cd pylib2
 call makewheel.bat
 cd ..
-consolidatewheels pylib1/wheelhouse/*.whl pylib2/wheelhouse/*.whl --dest=./patchedwheels
+
+set wheel_files=
+for %%f in (pylib1/wheelhouse/*.whl) do set wheel_files=!wheel_files! pylib1/wheelhouse/%%f
+for %%f in (pylib2/wheelhouse/*.whl) do set wheel_files=!wheel_files! pylib2/wheelhouse/%%f
+echo CONSOLIDATING %wheel_files%
+consolidatewheels %wheel_files% --dest=./patchedwheels
 pip install patchedwheels/*.whl --force-reinstall
 python pyparent/test.py
