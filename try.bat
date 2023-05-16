@@ -20,5 +20,8 @@ for %%f in (pylib1/wheelhouse/*.whl) do set wheel_files=!wheel_files! pylib1/whe
 for %%f in (pylib2/wheelhouse/*.whl) do set wheel_files=!wheel_files! pylib2/wheelhouse/%%f
 echo CONSOLIDATING %wheel_files%
 consolidatewheels %wheel_files% --dest=./patchedwheels
-pip install patchedwheels/*.whl --force-reinstall
+
+set wheel_files=
+for %%f in (patchedwheels/*.whl) do set wheel_files=!wheel_files! patchedwheels/%%f
+pip install %wheel_files% --force-reinstall
 python pyparent/test.py
