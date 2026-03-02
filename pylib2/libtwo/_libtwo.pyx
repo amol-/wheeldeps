@@ -1,4 +1,4 @@
-from _libbar cimport bar
+from libtwo._libbar cimport bar
 
 def hello(who):
     bar()

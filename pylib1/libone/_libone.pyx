@@ -1,4 +1,4 @@
-from _libfoo cimport foo
+from libone._libfoo cimport foo
 
 def hello(who):
     foo()

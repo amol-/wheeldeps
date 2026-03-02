@@ -3,7 +3,7 @@ set -e
 find ./ -iname "*.so" -delete
 rm -f ./patchedwheels/*.whl
 source venv/bin/activate
-pip install cython wheel auditwheel delocate consolidatewheels
+pip install cython wheel setuptools auditwheel delocate consolidatewheels
 (cd libfoo; make)
 (cd libbar; make)
 (cd pylib1; ./makewheel.sh)

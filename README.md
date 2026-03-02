@@ -39,3 +39,13 @@ Use ``try.sh`` or you can manually do
 6. Create a virtual environment and activate it (``python -mvenv venv; source ./venv/bin/activate``)
 7. Run ``pip install patchedwheels/*.whl --force-reinstall``
 8. Run ``cd pyparent; python test.py``
+
+Continuous Integration
+----------------------
+
+The CI workflow at ``.github/workflows/showcase.yml`` runs this showcase on Linux, macOS and Windows.
+It verifies that:
+
+1. The example wheels build successfully.
+2. ``consolidatewheels`` rewrites wheels so shared native libraries are included once across output wheels.
+3. Importing the full dependency chain in ``pyparent/test.py`` still works after consolidation.
